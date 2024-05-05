@@ -40,7 +40,7 @@ function getSystemInfo() {
 }
 
 app.get("/", (req, res) => {
-  res.send("Hello from Application Server 1!");
+  res.send("Hello from Application Server 2!");
 });
 
 app.get("/health", (req, res) => {

@@ -1,25 +1,24 @@
 #!/bin/bash
 
-# Endpoint URLs
-BASE_URL="http://localhost:5000"
-HEALTH_ENDPOINT="$BASE_URL/health"
+# Number of requests to send
+NUM_REQUESTS=100
 
-# Function to make a GET request and print response
-function make_request {
-  local url="$1"
-  local response=$(curl -s "$url")
-  echo "$response"
+# URL of the server
+SERVER_URL="http://localhost:3001"
+
+# Function to send requests
+send_requests() {
+  for ((i = 0; i < $NUM_REQUESTS; i++)); do
+    curl -s -o /dev/null -w "%{http_code}\n" $SERVER_URL &
+  done
+  wait
 }
 
-# Infinite loop to send requests
-while true; do
-  echo "Request to /:"
-  make_request "$BASE_URL"
-  
-  echo -e "\nRequest to /health:"
-  make_request "$HEALTH_ENDPOINT"
-  
-  # Add a delay between requests (optional)
-  sleep 1
-done
+# Main function
+main() {
+  echo "Sending $NUM_REQUESTS requests to $SERVER_URL..."
+  send_requests
+  echo "Requests sent."
+}
 
+main

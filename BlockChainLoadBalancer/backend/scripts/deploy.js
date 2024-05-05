@@ -14,7 +14,7 @@ async function main() {
   let serverUrl;
 
   // API endpoint for redirection
-  app.get("/redirect", async (req, res) => {
+  app.get("/", async (req, res) => {
     try {
       // Retrieve the next server URL from the contract
       serverUrl = await applicationServersContract.getServerUrl();
