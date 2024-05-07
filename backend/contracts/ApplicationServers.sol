@@ -2,21 +2,45 @@
 pragma solidity ^0.8.0;
 
 contract ApplicationServers {
-    string[] private serverUrls;
-    uint private currentIndex;
+    struct ServerInfo {
+        string url;
+        uint requestCount;
+    }
+
+    ServerInfo[] private servers;
 
     constructor(string[] memory _serverUrls) {
-        serverUrls = _serverUrls;
-        currentIndex = 0;
+        for (uint i = 0; i < _serverUrls.length; i++) {
+            servers.push(ServerInfo({
+                url: _serverUrls[i],
+                requestCount: 0
+            }));
+        }
     }
 
-    function getServerUrl() public view returns (string memory) {
-        require(serverUrls.length > 0, "No servers available");
-        return serverUrls[currentIndex];
+    function getNextServerUrl() public view returns (string memory) {
+    require(servers.length > 0, "No servers available");
+
+    uint minRequestCount = servers[0].requestCount;
+    uint minIndex = 0;
+
+    for (uint i = 1; i < servers.length; i++) {
+        if (servers[i].requestCount < minRequestCount) {
+            minRequestCount = servers[i].requestCount;
+            minIndex = i;
+        }
     }
 
-    function nextServer() public {
-        require(serverUrls.length > 0, "No servers available");
-        currentIndex = (currentIndex + 1) % serverUrls.length;
+    return servers[minIndex].url;
+}
+
+
+    function incrementRequestCount(string memory serverUrl) public {
+        for (uint i = 0; i < servers.length; i++) {
+            if (keccak256(abi.encodePacked(servers[i].url)) == keccak256(abi.encodePacked(serverUrl))) {
+                servers[i].requestCount++;
+                break;
+            }
+        }
     }
 }

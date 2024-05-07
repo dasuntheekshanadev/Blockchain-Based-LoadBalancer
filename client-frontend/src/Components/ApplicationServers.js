@@ -6,7 +6,8 @@ const ApplicationServerStatus = ({ serverUrl, title }) => {
     uptime: null,
     cpuUsage: null,
     memoryUsage: null,
-    diskUsage: null
+    diskUsage: null,
+    requestCount: null
   });
   const [showDetails, setShowDetails] = useState(false);
 
@@ -19,7 +20,7 @@ const ApplicationServerStatus = ({ serverUrl, title }) => {
         console.error("Error fetching server status:", error);
         setServerStatus({
           uptime: "Error",
-          cpuUsage: "Error",
+          cpuUsage: "Error", 
           memoryUsage: "Error",
           diskUsage: "Error"
         });
@@ -73,6 +74,10 @@ const ApplicationServerStatus = ({ serverUrl, title }) => {
               ></div>
             </div>
           </div>
+          <div className="mb-4">
+      <p className="text-gray-500">Request Count:</p>
+      <p>{serverStatus.requestCount}</p>
+    </div>
           <div className="mb-4">
             <p className="text-gray-500">Disk Usage:</p>
             <p>{serverStatus.diskUsage}%</p>

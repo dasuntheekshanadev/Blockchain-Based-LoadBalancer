@@ -3,6 +3,8 @@ const cors = require("cors");
 const os = require("os");
 const app = express();
 
+let requestCount = 0;
+
 app.use(cors()); // Enable CORS for all routes
 
 function formatBytes(bytes) {
@@ -40,11 +42,13 @@ function getSystemInfo() {
 }
 
 app.get("/", (req, res) => {
+  requestCount++;
   res.send("Hello from Application Server 1!");
 });
 
 app.get("/health", (req, res) => {
   const systemInfo = getSystemInfo();
+  systemInfo.requestCount = requestCount;
   res.json(systemInfo);
 });
 
