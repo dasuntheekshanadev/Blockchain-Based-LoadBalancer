@@ -12,7 +12,7 @@
     "os": "^0.1.2"
   },
   "scripts": {
-    "start:servers": "concurrently \"node applicationServers/applicationServer1.js\" \"node applicationServers/applicationServer2.js\""
+    "start:servers": "concurrently \"node applicationServers/applicationServer1.js\" \"node applicationServers/applicationServer2.js\" \"node applicationServers/applicationServer3.js\" \"node applicationServers/applicationServer4.js\""
   }
 }
 

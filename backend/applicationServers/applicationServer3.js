@@ -40,7 +40,7 @@ function getSystemInfo() {
 }
 
 app.get("/", (req, res) => {
-  res.send("Hello from Application Server 1!");
+  res.send("Hello from Application Server 3!");
 });
 
 app.get("/health", (req, res) => {
@@ -49,7 +49,7 @@ app.get("/health", (req, res) => {
 });
 
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5002;
 app.listen(PORT, () => {
-  console.log(`Application Server 1 listening on port ${PORT}`);
+  console.log(`Application Server 3 listening on port ${PORT}`);
 });
