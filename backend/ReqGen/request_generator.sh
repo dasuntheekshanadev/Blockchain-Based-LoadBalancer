@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Number of requests to send
-NUM_REQUESTS=100
+NUM_REQUESTS=400
 
 # URL of the server
-SERVER_URL="http://localhost:3001"
+SERVER_URL="http://localhost:5000"
 
 # Function to send requests
 send_requests() {

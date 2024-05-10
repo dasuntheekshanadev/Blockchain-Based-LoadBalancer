@@ -16,6 +16,10 @@ const NavigationBar = () => {
             <FaServer />
             <span className="hidden sm:inline">Application Servers</span>
           </Link>
+          <Link to="/dashboard" className="text-white hover:text-gray-300 flex items-center space-x-1">
+            <FaServer />
+            <span className="hidden sm:inline">Dashboard</span>
+          </Link>
         </div>
       </div>
     </nav>
