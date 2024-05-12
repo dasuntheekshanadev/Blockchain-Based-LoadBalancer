@@ -4,7 +4,8 @@ import ApplicationServers from './Components/ApplicationServers';
 import NavigationBar from './Components/NavBar';
 import Home from './Components/Home'; 
 import Dashboard from './Components/Dashboard';
-
+import Footer from './Components/Footer';
+import TotalRequestsChart from './Components/TotalRequestsChart';
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/servers" element={<ApplicationServers />} />
-          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/serverstat" element={<TotalRequestsChart />} />
         </Routes>
       </div>
     </Router>
@@ -22,3 +24,4 @@ function App() {
 }
 
 export default App;
+
